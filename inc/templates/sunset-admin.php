@@ -1,5 +1,10 @@
 <h1>Sunset Theme Options</h1>
-<h3 class="title">Manage Options</h3>
-<p>Customize the default Wordpress Appearance Options</p>
+<?php settings_errors(); ?>
 
-<?php bloginfo('name'); ?>
+<form method="post" action="options.php">
+    <?php settings_fields( 'sunset-settings-group' ); ?>
+    <?php do_settings_sections( 'shabayekdes_sunset' ); ?>
+    <?php submit_button(); ?>
+
+</form>
+

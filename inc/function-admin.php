@@ -18,9 +18,27 @@ function sunset_add_admin_page()
     add_submenu_page( 'shabayekdes_sunset', 'Sunset Theme Options', 'General', 'manage_options', 'shabayekdes_sunset', 'sunset_theme_create_page' );
     add_submenu_page( 'shabayekdes_sunset', 'Sunset CSS Options', 'Custom CSS', 'manage_options', 'shabayekdes_sunset_css', 'sunset_theme_settings_page');
 
-
+    //Activate custom settings
+    add_action( 'admin_init', 'sunset_custom_settings' );
 }
 add_action( 'admin_menu', 'sunset_add_admin_page' );
+
+function sunset_custom_settings()
+{
+    register_setting( 'sunset-settings-group', 'first_name' );
+    add_settings_section( 'sunset-sidebar-options', 'Sidebar Option', 'sunset_sidebar_options', 'shabayekdes_sunset' );
+    add_settings_field( 'sidebar-name', 'First Name', 'sunset_sidebar_name', 'shabayekdes_sunset', 'sunset-sidebar-options' );
+}
+
+function sunset_sidebar_name()
+{
+    $firstName = esc_attr( get_option( 'first_name' ) );
+    echo '<input type="text" name="first_name" value="'.$firstName.'" placeholder="First Name" />';
+}
+
+function sunset_sidebar_options() {
+    echo 'Customize your Sidebar Information';
+}
 
 function sunset_theme_create_page()
 {
