@@ -23,5 +23,5 @@
 <form method="post" action="options.php" class="sunset-general-form">
     <?php settings_fields( 'sunset-settings-group' ); ?>
     <?php do_settings_sections( 'shabayekdes_sunset' ); ?>
-    <?php submit_button(); ?>
+	<?php submit_button( 'Save Changes', 'primary', 'btnSubmit' ); ?>
 </form>
