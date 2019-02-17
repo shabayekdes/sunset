@@ -19,5 +19,6 @@ function sunset_load_admin_scripts( $hook )
 
     wp_register_script( 'sunset-admin-script', get_template_directory_uri() . '/js/sunset.admin.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'sunset-admin-script' );
+
 }
 add_action( 'admin_enqueue_scripts', 'sunset_load_admin_scripts' );
