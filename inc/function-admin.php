@@ -17,6 +17,7 @@ function sunset_add_admin_page()
     //Generate Sunset Admin Sub Pages
     add_submenu_page( 'shabayekdes_sunset', 'Sunset Sidebar Options', 'Sidebar', 'manage_options', 'shabayekdes_sunset', 'sunset_theme_create_page' );
     add_submenu_page( 'shabayekdes_sunset', 'Sunset Theme Options', 'Theme Options', 'manage_options', 'shabayekdes_sunset_theme', 'sunset_theme_support_page' );
+    add_submenu_page( 'shabayekdes_sunset', 'Sunset Contact Form', 'Contact Form', 'manage_options', 'shabayekdes_sunset_theme_contact', 'sunset_contact_form_page' );
     add_submenu_page( 'shabayekdes_sunset', 'Sunset CSS Options', 'Custom CSS', 'manage_options', 'shabayekdes_sunset_css', 'sunset_theme_settings_page');
 
 
@@ -55,13 +56,29 @@ function sunset_custom_settings(){
 	
     add_settings_field( 'post-formats', 'Post Formats', 'sunset_post_formats', 'shabayekdes_sunset_theme', 'sunset-theme-options' );
     add_settings_field( 'custom-header', 'Custom Header', 'sunset_custom_header', 'shabayekdes_sunset_theme', 'sunset-theme-options' );
-	add_settings_field( 'custom-background', 'Custom Background', 'sunset_custom_background', 'shabayekdes_sunset_theme', 'sunset-theme-options' );
+    add_settings_field( 'custom-background', 'Custom Background', 'sunset_custom_background', 'shabayekdes_sunset_theme', 'sunset-theme-options' );
+    
+    //Contact Form Options
+	register_setting( 'sunset-contact-options', 'activate_contact' );
+	
+	add_settings_section( 'sunset-contact-section', 'Contact Form', 'sunset_contact_section', 'shabayekdes_sunset_theme_contact');
+	
+	add_settings_field( 'activate-form', 'Activate Contact Form', 'sunset_activate_contact', 'shabayekdes_sunset_theme_contact', 'sunset-contact-section' );
+	
 
 
 }
 
 function sunset_theme_options() {
 	echo 'Activate and Deactivate specific Theme Support Options';
+}
+function sunset_contact_section() {
+	echo 'Activate and Deactivate the Built-in Contact Form';
+}
+function sunset_activate_contact() {
+	$options = get_option( 'activate_contact' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="custom_header" name="activate_contact" value="1" '.$checked.' /></label>';
 }
 function sunset_post_formats() {
 	$options = get_option( 'post_formats' );
@@ -137,8 +154,9 @@ function sunset_theme_create_page() {
 function sunset_theme_support_page() {
 	require_once( get_template_directory() . '/inc/templates/sunset-theme-support.php' );
 }
-
+function sunset_contact_form_page() {
+	require_once( get_template_directory() . '/inc/templates/sunset-contact-form.php' );
+}
 function sunset_theme_settings_page(){
     echo '<h1>Sunset Custom CSS</h1>';
-
 }
