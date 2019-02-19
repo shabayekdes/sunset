@@ -59,16 +59,25 @@ function sunset_custom_settings(){
     add_settings_field( 'custom-background', 'Custom Background', 'sunset_custom_background', 'shabayekdes_sunset_theme', 'sunset-theme-options' );
     
     //Contact Form Options
-	register_setting( 'sunset-contact-options', 'activate_contact' );
-	
+	register_setting( 'sunset-contact-options', 'activate_contact' );	
 	add_settings_section( 'sunset-contact-section', 'Contact Form', 'sunset_contact_section', 'shabayekdes_sunset_theme_contact');
-	
 	add_settings_field( 'activate-form', 'Activate Contact Form', 'sunset_activate_contact', 'shabayekdes_sunset_theme_contact', 'sunset-contact-section' );
 	
-
+	//Custom CSS Options
+	register_setting( 'sunset-custom-css-options', 'sunset_css', 'sunset_sanitize_custom_css' );
+	add_settings_section( 'sunset-custom-css-section', 'Custom CSS', 'sunset_custom_css_section_callback', 'shabayekdes_sunset_css' );
+	add_settings_field( 'custom-css', 'Insert your Custom CSS', 'sunset_custom_css_callback', 'shabayekdes_sunset_css', 'sunset-custom-css-section' );
+	
 
 }
-
+function sunset_custom_css_section_callback() {
+	echo 'Customize Sunset Theme with your own CSS';
+}
+function sunset_custom_css_callback() {
+	$css = get_option( 'sunset_css' );
+	$css = ( empty($css) ? '/* Sunset Theme Custom CSS */' : $css );
+	echo '<div id="customCss">'.$css.'</div><textarea id="sunset_css" name="sunset_css" style="display:none;visibility:hidden;">'.$css.'</textarea>';
+}
 function sunset_theme_options() {
 	echo 'Activate and Deactivate specific Theme Support Options';
 }
@@ -141,7 +150,10 @@ function sunset_sanitize_twitter_handler( $input ){
     $output = str_replace('@', '', $output);
     return $output;
 }
-
+function sunset_sanitize_custom_css( $input ){
+	$output = esc_textarea( $input );
+	return $output;
+}
 // Sidebar Options Functions
 function sunset_sidebar_options() {
     echo 'Customize your Sidebar Information';
@@ -158,5 +170,5 @@ function sunset_contact_form_page() {
 	require_once( get_template_directory() . '/inc/templates/sunset-contact-form.php' );
 }
 function sunset_theme_settings_page(){
-    echo '<h1>Sunset Custom CSS</h1>';
+	require_once( get_template_directory() . '/inc/templates/sunset-custom-css.php' );
 }
