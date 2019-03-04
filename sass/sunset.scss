@@ -156,3 +156,20 @@ h1 { font-size: 48px; font-weight: 200;
 		p { margin: 40px 0; }
 	}
 }
+
+/* 
+	Audio Post Format 
+	------------------------------------------------
+*/
+.sunset-format-audio {
+	h1 { font-size: 30px;
+		&.entry-title { display: inline-block; margin-right: 20px;
+			&:before, &:after { display: none; }
+		}
+	}
+	.entry-meta { display: inline-block; margin-bottom: 0; }
+	
+	.entry-content {
+		iframe { width: 100%; height: 166px; }
+	}
+}
