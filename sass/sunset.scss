@@ -6,15 +6,16 @@
 	Import
 	------------------------------------------------
 */
-@import 'base/variables';	//variables
-@import 'base/mixins';		//mixins
-@import 'base/fonticon';	//font icons
+@import 'base/variables';		//variables
+@import 'base/mixins';			//mixins
+@import 'base/placeholders';	//placeholders
+@import 'base/fonticon';		//font icons
 
 /* 
 	Generic 
 	------------------------------------------------
 */
-body { font-family: $body-font; }
+body { font-family: $body-font; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: greyscale; }
 
 a { color: $primary-color; @include animate( color, 320ms );
 	&:hover,
@@ -31,7 +32,7 @@ a { color: $primary-color; @include animate( color, 320ms );
 	Header 
 	------------------------------------------------
 */
-.header-container { position: relative; display: block; height: 326px; text-shadow: 0 1px 2px rgba(0,0,0,0.4); }
+.header-container { @extend %text-shadow; position: relative; display: block; height: 326px; }
 
 .site-title { color: #fff; margin: 0; font-size: 80px; }
 .site-description { font-size: 14px; color: #fff; margin-top: 1em; }
@@ -94,7 +95,7 @@ h1 { font-size: 48px; font-weight: 200;
 		&:after { margin-left: 10px; }
 	}
 }
-.entry-meta { font-size: 13px; font-weight: 300; color: $light-grey; margin-bottom: 20px;
+.entry-meta { font-size: 13px; font-weight: 200; color: $light-grey; margin-bottom: 20px;
 	a { font-weight: 500; color: $light-grey;
 		&:hover,
 		&:focus { color: $dark-grey; }
@@ -134,5 +135,24 @@ h1 { font-size: 48px; font-weight: 200;
 	}
 	.comments-link {
 		.sunset-icon { margin-left: 10px; }
+	}
+}
+
+/* 
+	Image Post Format 
+	------------------------------------------------
+*/
+.sunset-format-image { margin-top: 50px;
+	.entry-header { height: 600px; @extend %text-shadow; position: relative; }
+	h1, 
+	.entry-meta,
+	.entry-header { color: #ffffff;
+		a { color: #ffffff; }
+	}
+	h1 { padding-top: 10px; }
+}
+.entry-excerpt {
+	&.image-caption { @extend %background-gradient; position: absolute; left: 0; bottom: 0; right: 0; margin: 0; 
+		p { margin: 40px 0; }
 	}
 }
