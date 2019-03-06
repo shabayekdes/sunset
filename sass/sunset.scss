@@ -236,3 +236,18 @@ h1 { font-size: 48px; font-weight: 200;
 	}
 	
 }
+
+/* 
+	Quote Post Format 
+	------------------------------------------------
+*/
+
+.sunset-format-quote {
+	.quote-content { font-size: 42px; font-weight: 100; line-height: 1.3em; letter-spacing: 0.03em; 
+		&:before,
+		&:after { content: ''; display: inline-block; position: relative; color: #ccc; }
+		&:before { content: '“'; }
+		&:after { content: '„'; }
+	}
+	.quote-author { color: #898989; font-size: 12px; letter-spacing: 0.06em; margin-top: 10px; margin-block-end: 30px; }
+}
