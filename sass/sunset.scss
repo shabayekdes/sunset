@@ -251,3 +251,35 @@ h1 { font-size: 48px; font-weight: 200;
 	}
 	.quote-author { color: #898989; font-size: 12px; letter-spacing: 0.06em; margin-top: 10px; margin-block-end: 30px; }
 }
+
+/* 
+	Link Post Format 
+	------------------------------------------------
+*/
+
+.sunset-format-link {
+	h1 {
+		&.entry-title {
+			&:before, &:after { display: none; }
+			
+			a {
+				display: block;
+			}
+			
+			.link-icon {
+				display: block;
+				color: #fff;
+				font-size: 30px;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: rgba(0,0,0,0.6);
+				margin: 0 auto;
+				line-height: 1em;
+				padding-top: 10px;
+			}
+			
+		}
+		
+	}
+}
