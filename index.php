@@ -3,10 +3,11 @@
 @package sunsettheme
 */
 get_header(); ?>
+	
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			
-			<div class="container">
+			<div class="container sunset-posts-container">
 				
 				<?php 
 					
@@ -19,11 +20,19 @@ get_header(); ?>
 						endwhile;
 						
 					endif;
-					
+                
 				?>
 				
 			</div><!-- .container -->
 			
+			<div class="container text-center">
+				<a class="btn-sunset-load sunset-load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+					<span class="sunset-icon sunset-loading"></span>
+					<span class="text">Load More</span>
+				</a>
+			</div><!-- .container -->
+			
 		</main>
 	</div><!-- #primary -->
+	
 <?php get_footer(); ?>
