@@ -337,6 +337,22 @@ h1 { font-size: 48px; font-weight: 200;
 	Ajax Loading
 	------------------------------------------------
 */
+.sunset-posts-container {
+	
+	article {
+		@include animate( all, 320ms );
+		@include transform( translateY(100px) );
+		opacity: 0;
+		
+		&.reveal {
+			@include transform( translateY(0) );
+			opacity: 1;
+		}
+		
+	}
+	
+}
+
 .btn-sunset-load {
 	display: block;
 	width: 200px;
@@ -369,3 +385,4 @@ h1 { font-size: 48px; font-weight: 200;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
+
