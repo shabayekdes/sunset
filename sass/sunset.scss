@@ -10,6 +10,7 @@
 @import 'base/mixins';			//mixins
 @import 'base/placeholders';	//placeholders
 @import 'base/fonticon';		//font icons
+@import 'base/wordpress';		//wordpress default classes
 
 /* 
 	Generic 
@@ -389,4 +390,27 @@ h1 { font-size: 48px; font-weight: 200;
 	animation-duration: 1000ms;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
+}
+
+/* 
+	Single
+	------------------------------------------------
+*/
+
+.entry-content {
+	margin-top: 40px;
+	font-size: 18px;
+	letter-spacing: 0.02em;
+	font-weight: 300;
+	line-height: 1.7em;
+	
+	p {
+		margin-bottom: 15px;
+	}
+	
+	b,
+	strong {
+		font-weight: 500;
+	}
+	
 }
