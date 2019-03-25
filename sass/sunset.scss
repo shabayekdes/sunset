@@ -404,6 +404,18 @@ h1 { font-size: 48px; font-weight: 200;
 	font-weight: 300;
 	line-height: 1.7em;
 	
+	a,
+	.sunset-tooltip {
+		cursor: pointer;
+		color: #ff9d1d;
+		
+		&:hover,
+		&:focus {
+			color: #F56B08;
+		}
+		
+	}
+	
 	p {
 		margin-bottom: 15px;
 	}
