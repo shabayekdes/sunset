@@ -704,3 +704,42 @@ h1 {
 	}
 	
 }
+/* 
+	Sharing section
+	------------------------------------------------
+*/
+.sunset-shareThis {
+	display: block;
+	text-align: center;
+	border-top: 1px solid #F1F1F1;
+	padding-top: 10px;
+	clear: both;
+	
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		
+		li {
+			float: none;
+			display: inline-block;
+		}
+		
+	}
+	
+	a {
+		display: inline-block;
+		font-size: 20px;
+		opacity: 0.65;
+		margin: 0 5px;
+		color: #000000;
+		
+		&:hover,
+		&:focus {
+			opacity: 1;
+			color: #000000;
+		}
+		
+	}
+	
+}
