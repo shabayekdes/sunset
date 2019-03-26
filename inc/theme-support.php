@@ -30,6 +30,9 @@ function sunset_register_nav_menu() {
 	register_nav_menu( 'primary', 'Header Navigation Menu' );
 }
 add_action( 'after_setup_theme', 'sunset_register_nav_menu' );
+/* Activate HTML5 features */
+add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+
 /*
 	========================
 		BLOG LOOP CUSTOM FUNCTIONS
@@ -198,3 +201,13 @@ function sunset_share_this( $content ){
 	
 }
 add_filter( 'the_content', 'sunset_share_this' );
+
+function sunset_get_post_navigation(){
+	
+	if( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ):
+	
+		require( get_template_directory() . '/inc/templates/sunset-comment-nav.php' );
+	
+	endif;
+	
+}
