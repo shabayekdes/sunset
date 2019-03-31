@@ -32,6 +32,27 @@ function sunset_register_nav_menu() {
 add_action( 'after_setup_theme', 'sunset_register_nav_menu' );
 /* Activate HTML5 features */
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+/*
+	========================
+		SIDEBAR FUNCTIONS
+	========================
+*/
+function sunset_sidebar_init() {
+	
+	register_sidebar( 
+		array(
+			'name' => esc_html__( 'Sunset Sidebar', 'sunsettheme'),
+			'id' => 'sunset-sidebar',
+			'description' => 'Dynamic Right Sidebar',
+			'before_widget' => '<section id="%1$s" class="sunset-widget %2$s">',
+			'after_widget' => '</section>',
+			'before_title' => '<h2 class="sunset-widget-title">',
+			'after_title' => '</h2>'
+		)
+	);
+	
+}
+add_action( 'widgets_init', 'sunset_sidebar_init' );
 
 /*
 	========================
