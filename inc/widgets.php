@@ -9,7 +9,7 @@
 */
 class Sunset_Profile_Widget extends WP_Widget {
 	
-	//setup the widget name, description, etc...
+	// setup the widget name, description, etc...
 	public function __construct() {
 		
 		$widget_ops = array(
@@ -20,7 +20,7 @@ class Sunset_Profile_Widget extends WP_Widget {
 		
 	}
 	
-	//back-end display of widget
+	// back-end display of widget
 	public function form( $instance ) {
 		echo '<p><strong>No options for this Widget!</strong><br/>You can control the fields of this Widget from <a href="./admin.php?page=alecaddd_sunset">This Page</a></p>';
 	}
@@ -78,7 +78,15 @@ function sunset_tag_cloud_font_change( $args ) {
 	
 }
 add_filter( 'widget_tag_cloud_args', 'sunset_tag_cloud_font_change' );
-
+function sunset_list_categories_output_change( $links ) {
+	
+	$links = str_replace('</a> (', '</a> <span>', $links);
+	$links = str_replace(')', '</span>', $links);
+	
+	return $links;
+	
+}
+add_filter( 'wp_list_categories', 'sunset_list_categories_output_change' );
 /*
 	Save Posts views
 */
@@ -130,7 +138,7 @@ class Sunset_Popular_Posts_Widget extends WP_Widget {
 		
 	}
 	
-	//update widget
+	// update widget
 	public function update( $new_instance, $old_instance ) {
 		
 		$instance = array();
@@ -141,7 +149,7 @@ class Sunset_Popular_Posts_Widget extends WP_Widget {
 		
 	}
 	
-	//front-end display of widget
+	// front-end display of widget
 	public function widget( $args, $instance ) {
 		
 		$tot = absint( $instance[ 'tot' ] );
@@ -166,15 +174,18 @@ class Sunset_Popular_Posts_Widget extends WP_Widget {
 		
 		if( $posts_query->have_posts() ):
 		
-			echo '<ul>';
+			//echo '<ul>';
 				
-				while( $posts_query->have_posts() ): $posts_query->the_post();
-					
-					echo '<li>' . get_the_title() . '</li>';
-					
-				endwhile;
+			while( $posts_query->have_posts() ): $posts_query->the_post();
 				
-			echo '</ul>';
+				echo '<div class="media">';
+				echo '<div class="media-left"><img class="media-object" src="' . get_template_directory_uri() . '/img/post-' . ( get_post_format() ? get_post_format() : 'standard') . '.png" alt="' . get_the_title() . '"/></div>';
+				echo '<div class="media-body">' . get_the_title() . '</div>';
+				echo '</div>';
+				
+			endwhile;
+				
+			//echo '</ul>';
 		
 		endif;
 		
