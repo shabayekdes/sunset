@@ -158,28 +158,47 @@ jQuery(document).ready(function($) {
   }
 
   /* sidebar functions */
-	$(document).on('click', '.js-toggleSidebar', function() {
-    $( '.sunset-sidebar' ).toggleClass( 'sidebar-closed' );
-    $( 'body' ).toggleClass( 'no-scroll' );
-    $( '.sidebar-overlay' ).fadeToggle( 320 );
+  $(document).on("click", ".js-toggleSidebar", function() {
+    $(".sunset-sidebar").toggleClass("sidebar-closed");
+    $("body").toggleClass("no-scroll");
+    $(".sidebar-overlay").fadeToggle(320);
   });
-	/* contact form submission */
-	$('#sunsetContactForm').on('submit', function(e){
+  /* contact form submission */
+  $("#sunsetContactForm").on("submit", function(e) {
+    e.preventDefault();
+    $(".has-error").removeClass("has-error");
+    $(".js-show-feedback").removeClass("js-show-feedback");
+    var form = $(this),
+      name = form.find("#name").val(),
+      email = form.find("#email").val(),
+      message = form.find("#message").val(),
+      ajaxurl = form.data("url");
 
-		e.preventDefault();
+    if (name === "") {
+      $("#name")
+        .parent(".form-group")
+        .addClass("has-error");
+      return;
+    }
 
-		var form = $(this),
-				name = form.find('#name').val(),
-				email = form.find('#email').val(),
-				message = form.find('#message').val(),
-				ajaxurl = form.data('url');
+    if (email === "") {
+      $("#email")
+        .parent(".form-group")
+        .addClass("has-error");
+      return;
+    }
 
-		if( name === '' || email == '' || message == '' ){
-			console.log('Required inputs are empty');
-			return;
-		}
+    if (message === "") {
+      $("#message")
+        .parent(".form-group")
+        .addClass("has-error");
+      return;
+    }
 
-		$.ajax({
+    form.find("input, button, textarea").attr("disabled", "disabled");
+    $(".js-form-submission").addClass("js-show-feedback");
+
+    $.ajax({
 			
 			url : ajaxurl,
 			type : 'post',
@@ -192,13 +211,32 @@ jQuery(document).ready(function($) {
 				
 			},
 			error : function( response ){
-				console.log(response);
+				$('.js-form-submission').removeClass('js-show-feedback');
+				$('.js-form-error').addClass('js-show-feedback');
+				form.find('input, button, textarea').removeAttr('disabled');
 			},
 			success : function( response ){
-				console.log(response);
+				if( response == 0 ){
+					
+					setTimeout(function(){
+						$('.js-form-submission').removeClass('js-show-feedback');
+						$('.js-form-error').addClass('js-show-feedback');
+						form.find('input, button, textarea').removeAttr('disabled');
+					},1500);
+
+				} else {
+					
+					setTimeout(function(){
+						$('.js-form-submission').removeClass('js-show-feedback');
+						$('.js-form-success').addClass('js-show-feedback');
+						form.find('input, button, textarea').removeAttr('disabled').val('');
+					},1500);
+
+				}
 			}
 			
 		});
 
 	});
+
 });
