@@ -71,7 +71,7 @@
 					</div><!-- .table-cell -->
 				</div><!-- .header-content -->
 				
-				<div class="nav-container">
+				<div class="nav-container hidden-xs">
 					
 					<nav class="navbar navbar-sunset">
 						<?php

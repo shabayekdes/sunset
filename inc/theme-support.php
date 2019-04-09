@@ -242,3 +242,10 @@ function mailtrap($phpmailer) {
 	$phpmailer->Password = '';
   }
   add_action('phpmailer_init', 'mailtrap');
+
+  // Initialize global Mobile Detect
+function mobileDetectGlobal() {
+    global $detect;
+    $detect = new Mobile_Detect;
+}
+add_action('after_setup_theme', 'mobileDetectGlobal');
