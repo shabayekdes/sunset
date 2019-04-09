@@ -232,3 +232,13 @@ function sunset_get_post_navigation(){
 	endif;
 	
 }
+
+function mailtrap($phpmailer) {
+	$phpmailer->isSMTP();
+	$phpmailer->Host = 'mailtrap.io';
+	$phpmailer->SMTPAuth = true;
+	$phpmailer->Port = 2525;
+	$phpmailer->Username = '';
+	$phpmailer->Password = '';
+  }
+  add_action('phpmailer_init', 'mailtrap');
